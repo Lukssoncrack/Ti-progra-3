@@ -3,6 +3,9 @@ import { ClipLoader } from 'react-spinners';
 import './Loading.css'
 
 
+function Loading() {
+  return <p>Cargando...</p>;
+}
 
 
 
