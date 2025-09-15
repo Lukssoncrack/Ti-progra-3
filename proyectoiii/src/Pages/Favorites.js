@@ -3,7 +3,9 @@ import MovieGrid from '../Components/MovieGrid/MovieGrid';
 import Loading from '../Components/Loading/Loading'
 
 
-
+class Favoritos extends Component{
+    
+}
 
 
 
