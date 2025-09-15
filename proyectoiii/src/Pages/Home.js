@@ -38,9 +38,9 @@ let apiNowPlaying =
         }
       })
       .catch(function (error) { console.log(error); })
-      .finally(() => {
+    
         this.setState({ isLoading: false });
-      });
+      ;
   }
 
   render() {
@@ -67,9 +67,9 @@ let apiNowPlaying =
           <div className="link-container">
             <Link className="ver-mas" to="/cartelera">Ver más</Link>
           </div>
-          <MovieGrid movies={nowPlayingMovies.slice(0, 5)} />
-        </section>
-      </>
+            <MovieGrid movies={popularMovies} />
+            <MovieGrid movies={nowPlayingMovies} />        </section>
+                </>
     );
   }
 }
