@@ -3,12 +3,15 @@ import { ClipLoader } from 'react-spinners';
 import './Loading.css'
 
 
-function Loading() {
-  return <p>Cargando...</p>;
-}
+const Loading = () => {
+  return (
+    <div className="loader">
 
-
-
+      <ClipLoader color="beige" loading={true} size={150} />
+      <h2 className="mensaje">Se está cargando, por favor espera...</h2>
+    </div>
+  );
+};
 
 
 

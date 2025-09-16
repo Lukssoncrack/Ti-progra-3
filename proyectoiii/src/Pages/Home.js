@@ -15,41 +15,48 @@ class Home extends Component {
   }
 
   componentDidMount() {
-    let apiPopular =
-  'https://api.themoviedb.org/3/movie/popular?language=en-US&page=1';
+    const apiPopular = 'https://api.themoviedb.org/3/movie/popular?language=en-US&page=1';
 
-let apiNowPlaying =
-  'https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1';
+const apiNowPlaying = 'https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1';
  
-    fetch(apiPopular)
-      .then(function (response) { return response.json(); })
-      .then((data) => {
-        if (data && data.results) {
-          this.setState({ popularMovies: data.results });
-        }
-      })
-      .catch(function (error) { console.log(error); })
 
-      .then(() => fetch(apiNowPlaying))
-      .then(function (response) { return response.json(); })
+  // traemos peliculas populares
+    fetch(apiPopular)
+      .then( (response)=> response.json())
       .then((data) => {
-        if (data && data.results) {
-          this.setState({ nowPlayingMovies: data.results });
+        if (data.results) {
+          this.setState({ popularMovies: data.results });
+        }else {
+           console.error('No se encuentran películas populares');
         }
+        
       })
-      .catch(function (error) { console.log(error); })
+      .catch((error) => console.log(error));
+        
+    //traemos peliculaes para la cartelera 
+      fetch(apiNowPlaying)
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.results) {
+          this.setState({ nowPlayingMovies: data.results });
+        }else{
+        console.error('No se encuentran películas en cartelera');
+         }
+      this.setState({ isLoading: false });
+      })
+      .catch((error) =>  console.log(error))
     
         this.setState({ isLoading: false });
       ;
   }
 
   render() {
-    let { popularMovies, nowPlayingMovies, isLoading } = this.state;
+    const { popularMovies, nowPlayingMovies, isLoading } = this.state;
 
     if (isLoading) {
       return <Loading />;
     }
-
+    
     return (
       <>
         <SearchForm history={this.props.history} />
@@ -67,9 +74,9 @@ let apiNowPlaying =
           <div className="link-container">
             <Link className="ver-mas" to="/cartelera">Ver más</Link>
           </div>
-            <MovieGrid movies={popularMovies} />
-            <MovieGrid movies={nowPlayingMovies} />        </section>
-                </>
+          <MovieGrid movies={nowPlayingMovies.slice(0, 5)} />
+        </section>
+      </>
     );
   }
 }
