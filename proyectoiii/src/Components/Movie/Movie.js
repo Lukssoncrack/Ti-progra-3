@@ -1,18 +1,20 @@
 import "./Movie.css"
 import { Component } from "react";
 import { Link } from "react-router-dom";
-import { FaHeart } from "react-icons/fa";
 
-class Movie extends Component{
 
-render(){
-<Link to={`/movies/${movie.id}`}>Ir a detalle</Link>
 
+class Movie extends Component {
+  render() {
+    const { movie } = this.props; 
+
+    return (
+      <div>
+        <h3>{movie.displayTitle}</h3>
+        <Link to={`/movies/${movie.id}`}>Ir a detalle</Link>
+      </div>
+    );
+  }
 }
 
-
-
-}
-
-
-export default Movie
+export default Movie;

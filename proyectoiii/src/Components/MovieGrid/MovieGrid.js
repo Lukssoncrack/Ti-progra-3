@@ -29,7 +29,7 @@ function MovieGrid({ movies }) {
     movieData.id = movies[i].id;
     movieData.poster_path = movies[i].poster_path;
 
-   
+    
     if (movies[i].title) {
       movieData.displayTitle = movies[i].title;
     } else {
