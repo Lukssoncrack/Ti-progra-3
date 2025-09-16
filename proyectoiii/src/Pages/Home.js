@@ -15,9 +15,11 @@ class Home extends Component {
   }
 
   componentDidMount() {
-    const apiPopular = 'https://api.themoviedb.org/3/movie/popular?language=en-US&page=1';
+    const apiPopular =
+    'https://api.themoviedb.org/3/movie/popular?api_key=1d647c75a2cc59b2d409129bc1e32ed0&language=en-US&page=1';
 
-const apiNowPlaying = 'https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1';
+    const apiNowPlaying =
+    'https://api.themoviedb.org/3/movie/now_playing?api_key=1d647c75a2cc59b2d409129bc1e32ed0&language=en-US&page=1';
  
 
   // traemos peliculas populares
@@ -56,7 +58,7 @@ const apiNowPlaying = 'https://api.themoviedb.org/3/movie/now_playing?language=e
     if (isLoading) {
       return <Loading />;
     }
-    
+
     return (
       <>
         <SearchForm history={this.props.history} />
