@@ -16,10 +16,10 @@ class Home extends Component {
 
   componentDidMount() {
     let apiPopular =
-  'https://api.themoviedb.org/3/movie/popular?language=en-US&page=1';
+    'https://api.themoviedb.org/3/movie/popular?api_key=1d647c75a2cc59b2d409129bc1e32ed0&language=en-US&page=1';
 
-let apiNowPlaying =
-  'https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1';
+    let apiNowPlaying =
+    'https://api.themoviedb.org/3/movie/now_playing?api_key=1d647c75a2cc59b2d409129bc1e32ed0&language=en-US&page=1';
  
     fetch(apiPopular)
       .then(function (response) { return response.json(); })
