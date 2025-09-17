@@ -55,7 +55,7 @@ class Populares extends Component {
                         return(
                             <li key={pelicula.id}>
                                 <h3>{pelicula.title}</h3>
-                                <img src=''/>
+                                <img src={`https://image.tmdb.org/t/p/w500${pelicula.poster_path}`}/>
 
                             </li>
                         ) 

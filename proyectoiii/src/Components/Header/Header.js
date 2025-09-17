@@ -10,8 +10,8 @@ function Header(){
             <div>
                 <Link to='/'>Home</Link>
                 <Link to='/favorites'>Favoritos</Link>
-                <Link to='/seccion1'>Seccion 1</Link>
-                <Link to='/seccion2'>Seccion 2</Link>
+                <Link to='/populares'>Populares</Link>
+                <Link to='/cartelera'>Cartelera</Link>
                 
             </div>
         </section>
