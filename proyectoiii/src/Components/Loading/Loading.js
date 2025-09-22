@@ -7,7 +7,7 @@ const Loading = () => {
   return (
     <div className="loader">
 
-      <ClipLoader color="beige" loading={true} size={150} />
+      <ClipLoader color="beige" loading={true} size={140} />
       <h2 className="mensaje">Se está cargando, por favor espera...</h2>
     </div>
   );
