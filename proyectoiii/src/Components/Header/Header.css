@@ -1,0 +1,26 @@
+.menu{
+    display: flex;
+    margin-bottom: 20px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 400px
+}
+
+.logo{
+    height: 150px;
+}
+
+section{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: rgb(14, 14, 146);    
+    color: white;
+    text-decoration: none;
+}
+
+.item{
+    margin: 10px;
+    color: white;
+    text-decoration: none;
+}
