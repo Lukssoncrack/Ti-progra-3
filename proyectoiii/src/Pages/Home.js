@@ -88,7 +88,7 @@ fetch('https://api.themoviedb.org/3/tv/airing_today?language=en-US&page=1', opti
         <div className="link-container">
           <Link className="ver-mas" to="/populares">Ver más</Link>
         </div>
-        <MovieGrid movies={this.state.topratedMovies} />
+        <MovieGrid movies={this.state.topratedMovies} type='movie' />
       </section>
     )}
 
@@ -100,7 +100,7 @@ fetch('https://api.themoviedb.org/3/tv/airing_today?language=en-US&page=1', opti
         <div className="link-container">
           <Link className="ver-mas" to="/cartelera">Ver más</Link>
         </div>
-        <MovieGrid movies={this.state.nowPlayingMovies} />
+        <MovieGrid movies={this.state.nowPlayingMovies} type='movie'/>
       </section>
     )}
 
@@ -112,7 +112,7 @@ fetch('https://api.themoviedb.org/3/tv/airing_today?language=en-US&page=1', opti
         <div className="link-container">
           <Link className="ver-mas" to="/series-populares">Ver más</Link>
         </div>
-        <MovieGrid movies={this.state.topratedSeries} />
+        <MovieGrid movies={this.state.topratedSeries} type='tv'/>
       </section>
     )}
 
@@ -124,10 +124,11 @@ fetch('https://api.themoviedb.org/3/tv/airing_today?language=en-US&page=1', opti
         <div className="link-container">
           <Link className="ver-mas" to="/series-hoy">Ver más</Link>
         </div>
-        <MovieGrid movies={this.state.nowPlayingSeries} />
+        <MovieGrid movies={this.state.nowPlayingSeries} type='tv'/>
       </section>
     )}
   </>    
 );     
-}        }
+}    
+}
 export default Home;

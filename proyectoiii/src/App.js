@@ -18,9 +18,11 @@ function App() {
           <Route path="/" exact={true} component={Home}></Route>
           <Route path="/favorites" component={Favorites}></Route>
           <Route path="/populares" component={Populares}></Route>
+          <Route path="/seriesPopulares" component={SeriesPopulares}></Route>
           <Route path="/cartelera" component={Cartelera}></Route>
           <Route path="/search" component={SearchResults}></Route>
           <Route path="/movies/:movieId" exact component={MovieDetail}></Route>
+          <Route path="/series/:serieId" exact component={SerieDetail}></Route> 
           <Route path="" component={NotFound} />
         </Switch>
         <Footer></Footer>
@@ -29,4 +31,4 @@ function App() {
   );
 }
 
-export default App;
+export default App;
