@@ -8,6 +8,8 @@ import Cartelera from "./Pages/Cartelera";
 import SearchResults from "./Pages/SearchResults";
 import NotFound from './Pages/NotFound';
 import MovieDetail from './Components/MovieDetail/MovieDetail';
+import SeriesPopulares from './Pages/SeriesPopulares';
+import SeriesCartelera from './Pages/SeriesCartelera';
 
 function App() {
   return (
@@ -19,6 +21,7 @@ function App() {
           <Route path="/favorites" component={Favorites}></Route>
           <Route path="/populares" component={Populares}></Route>
           <Route path="/seriesPopulares" component={SeriesPopulares}></Route>
+          <Route path="/seriesCartelera" component={SeriesCartelera}></Route>
           <Route path="/cartelera" component={Cartelera}></Route>
           <Route path="/search" component={SearchResults}></Route>
           <Route path="/movies/:movieId" exact component={MovieDetail}></Route>

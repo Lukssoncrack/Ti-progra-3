@@ -30,13 +30,18 @@ class SeriesPopulares extends Component {
             })
     }
 
+    
+    filtrarSeries(evento){
+        this.setState({busqueda: evento.target.value})
+        let SerieFiltrada = this.state.series.filter((serie) => serie.includes(this.state.busqueda))
+        console.log(this.state.busqueda, SerieFiltrada)
+    }
 
     cargarMasSeries() {
         this.setState(
             { paginaSeries: this.state.paginaSeries + 1, cargando: true },
             this.fetchSeries
         )
-        this.fetchSeries();
     }
 
     render() {
@@ -47,26 +52,9 @@ class SeriesPopulares extends Component {
             <div>
                 <h1> Series Populares</h1>
                 <form>
-                    <input type='text' value={this.state.busquedaSeries} onChange={(evento) => this.setState({ busquedaSeries: evento.target.value })} />
-
+                    <input type = 'text' value={this.state.busqueda} onChange={(evento) => this.filtrarSeries(evento)}/>
                 </form>
-                <ul>
-                    {this.state.series.map((serie) => {
-                        if (serie.name.toLowerCase().includes(this.state.busquedaSeries.toLocaleLowerCase())) {
-                            return (
-                                <li key={serie.id}>
-                                    <h3>{serie.name}</h3>
-                                    <img src={`https://image.tmdb.org/t/p/w500${serie.poster_path}`} />
-
-                                </li>
-                            )
-                        } else {
-                            return null
-                        }
-
-                    })}
-                </ul>
-                <button onClick={this.cargarMasSeries}>Cargar mas</button>
+                <button  onClick={() => this.cargarMas()}>Cargar mas</button>
             </div>
         )
     }

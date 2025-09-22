@@ -38,6 +38,12 @@ class Populares extends Component {
         )
     }
 
+    filtrarPeliculas(evento){
+        this.setState({busqueda: evento.target.value})
+        let PeliFiltrada = this.state.peliculas.filter((pelicula) => pelicula.includes(this.state.busqueda))
+        console.log(this.state.busqueda, PeliFiltrada)
+    }
+
     render(){
         if(this.state.cargando){
             return <Loading/>
@@ -46,25 +52,8 @@ class Populares extends Component {
             <div>
                 <h1>Peliculas populares</h1>
                 <form>
-                    <input type = 'text' value={this.state.busqueda} onChange={(evento) => this.setState({busqueda: evento.target.value})}/>
-
+                    <input type = 'text' value={this.state.busqueda} onChange={(evento) => this.filtrarPeliculas(evento)}/>
                 </form>
-                <ul>
-                    {this.state.peliculas.map((pelicula) => {
-                       if(pelicula.title.toLowerCase().includes(this.state.busqueda.toLocaleLowerCase())){
-                        return(
-                            <li key={pelicula.id}>
-                                <h3>{pelicula.title}</h3>
-                                <img src={`https://image.tmdb.org/t/p/w500${pelicula.poster_path}`}/>
-
-                            </li>
-                        ) 
-                       }else{
-                        return null
-                       }
-
-                    })}
-                </ul>
                 <button  onClick={() => this.cargarMas()}>Cargar mas</button>
             </div>
         )
