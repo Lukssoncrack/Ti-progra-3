@@ -8,6 +8,7 @@ import Cartelera from "./Pages/Cartelera";
 import SearchResults from "./Pages/SearchResults";
 import NotFound from './Pages/NotFound';
 import MovieDetail from './Components/MovieDetail/MovieDetail';
+import SerieDetail from './Components/SerieDetail/SerieDetail';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path="/cartelera" component={Cartelera}></Route>
           <Route path="/search" component={SearchResults}></Route>
           <Route path="/movies/:movieId" exact component={MovieDetail}></Route>
+          <Route path="/series/:serieId" exact component={SerieDetail}></Route> 
           <Route path="" component={NotFound} />
         </Switch>
         <Footer></Footer>
