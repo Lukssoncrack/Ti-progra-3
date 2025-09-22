@@ -1,6 +1,5 @@
 import { Component } from "react";
-import "./SerieDetail.css";
-import Loading from '../Loading/Loading';
+import Loading from '../Components/Loading/Loading';
 import { FaHeart } from "react-icons/fa";
 
 
