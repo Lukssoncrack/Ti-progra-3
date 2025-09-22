@@ -8,79 +8,126 @@ class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      popularMovies: [],
+      topratedMovies: [],
       nowPlayingMovies: [],
+      topratedSeries: [],
+      nowPlayingSeries: [],
       isLoading: true,
     };
   }
 
   componentDidMount() {
-    const apiPopular =
-    'https://api.themoviedb.org/3/movie/popular?api_key=1d647c75a2cc59b2d409129bc1e32ed0&language=en-US&page=1';
+   const options = {
+  method: 'GET',
+  headers: {
+    accept: 'application/json',
+    Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxZDY0N2M3NWEyY2M1OWIyZDQwOTEyOWJjMWUzMmVkMCIsIm5iZiI6MTc1NzYyMDI1OC43MjIsInN1YiI6IjY4YzMyODIyODQyMzZiOTYxNmEyNmFkYSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.MvaKrJXB17B36yie7BVCiQwXMd3zm9sSohxkS27hiWE'
+  }
+};
 
-    const apiNowPlaying =
-    'https://api.themoviedb.org/3/movie/now_playing?api_key=1d647c75a2cc59b2d409129bc1e32ed0&language=en-US&page=1';
- 
+fetch('https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1', options)
+  .then(res => res.json())
+  .then(res => {
+    let filtrado = res.results.filter((peli,idx)=> idx <4)
+    this.setState({
+      topratedMovies:filtrado
+    })
+  })
+  .catch(err => console.error(err));
 
-  // traemos peliculas populares
-    fetch(apiPopular)
-      .then( (response)=> response.json())
-      .then((data) => {
-        if (data.results) {
-          this.setState({ popularMovies: data.results });
-        }else {
-           console.error('No se encuentran películas populares');
-        }
-        
-      })
-      .catch((error) => console.log(error));
-        
-    //traemos peliculaes para la cartelera 
-      fetch(apiNowPlaying)
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.results) {
-          this.setState({ nowPlayingMovies: data.results });
-        }else{
-        console.error('No se encuentran películas en cartelera');
-         }
-      this.setState({ isLoading: false });
-      })
-      .catch((error) =>  console.log(error))
-    
-        this.setState({ isLoading: false });
-      ;
+fetch('https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1', options)
+  .then(res => res.json())
+  .then(res =>{
+    let enfiltrado = res.results.filter((peli,idx)=> idx <4)
+     this.setState({
+      nowPlayingMovies:enfiltrado
+    })
+  } )
+  .catch(err => console.error(err));
+
+
+fetch('https://api.themoviedb.org/3/tv/popular?language=en-US&page=1', options)
+  .then(res => res.json())
+  .then(res => {
+    let boca = res.results.filter((peli,idx)=> idx <4)
+     this.setState({
+      topratedSeries:boca
+    }) 
+  })
+  .catch(err => console.error(err));
+
+
+fetch('https://api.themoviedb.org/3/tv/airing_today?language=en-US&page=1', options)
+  .then(res => res.json())
+  .then(res => {
+    let juniors = res.results.filter((peli,idx)=> idx <4)
+     this.setState({
+      nowPlayingSeries:juniors
+    }) 
+  })
+  .catch(err => console.error(err));
+
+
+
   }
 
   render() {
-    const { popularMovies, nowPlayingMovies, isLoading } = this.state;
+    
 
-    if (isLoading) {
-      return <Loading />;
-    }
+   
 
     return (
-      <>
-        <SearchForm history={this.props.history} />
+  <>
+    <SearchForm history={this.props.history} />
 
-        <section>
-          <h2>Películas Populares</h2>
-          <div className="link-container">
-            <Link className="ver-mas" to="/populares">Ver más</Link>
-          </div>
-          <MovieGrid movies={popularMovies.slice(0, 5)} />
-        </section>
+    {this.state.topratedMovies.length === 0 ? (
+      <Loading />
+    ) : (
+      <section>
+        <h2>Películas Populares</h2>
+        <div className="link-container">
+          <Link className="ver-mas" to="/populares">Ver más</Link>
+        </div>
+        <MovieGrid movies={this.state.topratedMovies} />
+      </section>
+    )}
 
-        <section>
-          <h2>Películas en Cartelera</h2>
-          <div className="link-container">
-            <Link className="ver-mas" to="/cartelera">Ver más</Link>
-          </div>
-          <MovieGrid movies={nowPlayingMovies.slice(0, 5)} />
-        </section>
-      </>
-    );
-  }
-}
+    {this.state.nowPlayingMovies.length === 0 ? (
+      <Loading />
+    ) : (
+      <section>
+        <h2>Películas en Cartelera</h2>
+        <div className="link-container">
+          <Link className="ver-mas" to="/cartelera">Ver más</Link>
+        </div>
+        <MovieGrid movies={this.state.nowPlayingMovies} />
+      </section>
+    )}
 
+    {this.state.topratedSeries.length === 0 ? (
+      <Loading />
+    ) : (
+      <section>
+        <h2>Series Populares</h2>
+        <div className="link-container">
+          <Link className="ver-mas" to="/series-populares">Ver más</Link>
+        </div>
+        <MovieGrid movies={this.state.topratedSeries} />
+      </section>
+    )}
+
+    {this.state.nowPlayingSeries.length === 0 ? (
+      <Loading />
+    ) : (
+      <section>
+        <h2>Series en emisión hoy</h2>
+        <div className="link-container">
+          <Link className="ver-mas" to="/series-hoy">Ver más</Link>
+        </div>
+        <MovieGrid movies={this.state.nowPlayingSeries} />
+      </section>
+    )}
+  </>    
+);     
+}        }
 export default Home;

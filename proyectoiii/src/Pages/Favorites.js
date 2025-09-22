@@ -1,104 +1,87 @@
 import React, { Component } from 'react';
 import MovieGrid from '../Components/MovieGrid/MovieGrid';
 import Loading from '../Components/Loading/Loading';
+//Import No tiene  el componente de la card (PeliculaSeriesCard).
+//clases bien usadas 
+//imports 
+
+
 
 class Favoritos extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      favoriteMovies: [],
-      favoriteSeries: [],
-      isLoading: true
+      favoritos: []
+      
     };
   }
 
+
+  
   componentDidMount() {
-    const storage = localStorage.getItem('favoritos');
-    const parsedArray = JSON.parse(storage) || []; // Si localStorage está vacío
+    let favoriteMoviesL = localStorage.getItem("favoritos")
 
-    const movieIds = parsedArray
-      .filter(item => item.type === 'movie')
-      .map(item => item.id);
-
-    const seriesIds = parsedArray
-      .filter(item => item.type === 'series')
-      .map(item => item.id);
-
-    const moviesPromise = Promise.all(
-      movieIds.map(id =>
-        fetch(
-          `https://api.themoviedb.org/3/movie/${id}?api_key=1d647c75a2cc59b2d409129bc1e32ed0&language=en-US&page=1`
-        )
-          .then(res => res.json())
-          .catch(() => null)
-      )
-    );
-
-    const seriesPromise = Promise.all(
-      seriesIds.map(id =>
-        fetch(
-          `https://api.themoviedb.org/3/tv/${id}?api_key=1d647c75a2cc59b2d409129bc1e32ed0&language=en-US&page=1`
-        )
-          .then(res => res.json())
-          .catch(() => null)
-      )
-    );
-
-    Promise.all([moviesPromise, seriesPromise]).then(([movies, series]) => {
-      this.setState({
-        favoriteMovies: movies.filter(m => m !== null),
-        favoriteSeries: series.filter(s => s !== null),
-        isLoading: false
-      });
-    });
+    let favoritos;
+    if (favoriteMoviesL === null){
+      favoritos = [];
+    }else{
+      favoritos = JSON.parse(favoriteMoviesL)
+    }
+    this.setState({favoritos: favoritos});
   }
 
-  render() {
-    const { favoriteMovies, favoriteSeries, isLoading } = this.state;
+  render(){
+    return(
+      <React.Fragment>
+        <header />
+        <div className=''>
+          <h1>Favoritos</h1>
 
-    if (isLoading) {
-      return <Loading />;
-    }
+        {this.state.favoritos.filter(elemento => elemento.title).length > 0 ? (
+        <div className=''>
+          <h3>Tus pelicualas favoritas</h3>
+          <section>
+            <div className=''>
+              {this.state.favoritos.filter(elemento => elemento.title). map(elemento => (
+                <PeliculaSeriesCard 
+                key= {elemento.id}
+                item ={elemento}
+                />
 
-    // Ver si no hay favoritos
-    if (favoriteMovies.length === 0) {
-      if (favoriteSeries.length === 0) {
-        return (
-          <div className='results-div'>
-            <p className="results2">No tienes favoritos</p>
+              ))}
+            </div>
+          </section>
           </div>
-        );
-      }
-    }
+          ) : (
+            <h3>No tenes ninguna pelicuala en favoritos</h3>
+          )}
+          {this.state.favoritos.filter(elemento => elemento.name).length > 0 ? (
+            <div className=''>
+              <h3>Tus peliculas favoritos</h3>
+              <section>
+                <div className=''>
+                {this.state.favoritos.filter(elemento => elemento.name).map(elemento => (
+                  <PeliculaSeriesCard
+                  key = {elemento.id}
+                  item = {elemento}
+                  />
+                ))}
+                </div>
+              </section>
+            </div>
+          ) : (
+            <h3>No tenes ninguna serie en favoritos</h3>
+          )}
 
-    const sections = [];
-
-    if (favoriteMovies.length > 0) {
-      sections.push(
-        <section key="movies">
-          <h2>Películas Favoritas</h2>
-          <div className="link-container">
-            <p className="ver-mas">Ver más películas</p>
-          </div>
-          <MovieGrid movies={favoriteMovies} />
-        </section>
-      );
-    }
-
-    if (favoriteSeries.length > 0) {
-      sections.push(
-        <section key="series">
-          <h2>Series Favoritas</h2>
-          <div className="link-container">
-            <p className="ver-mas">Ver más series</p>
-          </div>
-          <MovieGrid movies={favoriteSeries} />
-        </section>
-      );
-    }
-
-    return <div>{sections}</div>;
+        </div>
+        <footer />
+      </React.Fragment>
+    );
   }
+
 }
+
+
+ 
 
 export default Favoritos;
