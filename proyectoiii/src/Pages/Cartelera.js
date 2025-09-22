@@ -18,7 +18,7 @@ class Cartelera extends Component {
     componentDidMount(){
         this.fetchPeliculas()
     }
-    
+
     fetchPeliculas(){
         fetch(`https://api.themoviedb.org/3/movie/now_playing?api_key=${this.API_KEY}&language=es-ES&page=${this.state.pagina}`)
         .then(response => response.json())
@@ -32,13 +32,11 @@ class Cartelera extends Component {
                 console.log('Error: ', error);
             })
     }
-    
+
     filtrarPeliculas(evento){
         this.setState({busqueda: evento.target.value})
-        let PeliFiltrada = this.state.peliculas.filter((pelicula) => pelicula.includes(this.state.busqueda))
-        console.log(this.state.busqueda, PeliFiltrada)
     }
-    
+
     cargarMas(){
         this.setState(
             { pagina: this.state.pagina + 1, cargando: true},
@@ -54,11 +52,14 @@ class Cartelera extends Component {
             <div>
                 <h1>Peliculas en cartelera</h1>
                 <form>
-                    <input type = 'text' value={this.state.busqueda} onChange={(evento) => this.filtrarPeliculas(evento)}/>
+                    <input type = 'text' value={this.state.busqueda} onChange={(evento) => this.setState({busqueda: evento.target.value})}/>
                 </form>
+                <MovieGrid movies={this.state.peliculas.filter(pelicula => pelicula.title.toLowerCase().includes(this.state.busqueda.toLowerCase()))}/>
+
                 <button  onClick={() => this.cargarMas()}>Cargar mas</button>
             </div>
         )
     }        
 }
+
 export default Cartelera;

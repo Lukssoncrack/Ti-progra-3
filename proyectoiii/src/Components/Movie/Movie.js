@@ -24,7 +24,7 @@ class Movie extends Component {
       peliculas = "https://via.placeholder.com/342x513?text=Sin+imagen";
     }
       return(
-        <div>
+        <div class='item'>
         <img src={peliculas} alt={movie.displayTitle} className="movie-poster" />
         <h3>{movie.displayTitle}</h3>
         <button onClick={() => this.setState({ mostrarDescripcion: !this.state.mostrarDescripcion })}>

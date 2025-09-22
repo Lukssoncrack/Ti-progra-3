@@ -1,5 +1,6 @@
 import React from 'react';
 import Movie from "../Movie/Movie";
+import './MovieGrid.css'
 
 function MovieGrid({ movies , type}) {
   
@@ -39,7 +40,7 @@ function MovieGrid({ movies , type}) {
   }
 
   return (
-    <section>
+    <section class='seccion'>
       <div className="movie-grid">
         {peliculaseries}
       </div>

@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import Loading from '../Components/Loading/Loading'
+import MovieGrid from '../Components/MovieGrid/MovieGrid';
 
 class SeriesPopulares extends Component {
     constructor(props) {
         super(props);
         this.state = {
             series: [],
-            busquedaSeries: '',
+            busqueda: '',
             cargando: true,
             paginaSeries: 1,
         }
@@ -31,10 +32,11 @@ class SeriesPopulares extends Component {
     }
 
     
-    filtrarSeries(evento){
-        this.setState({busqueda: evento.target.value})
-        let SerieFiltrada = this.state.series.filter((serie) => serie.includes(this.state.busqueda))
-        console.log(this.state.busqueda, SerieFiltrada)
+    filtrarSeries(serie){
+        if(serie.name){
+            return serie.name.toLowerCase().includes(this.state.busqueda.toLowerCase())
+        }
+        return false
     }
 
     cargarMasSeries() {
@@ -48,13 +50,16 @@ class SeriesPopulares extends Component {
         if (this.state.cargando) {
             return <Loading />
         }
+
         return (
             <div>
-                <h1> Series Populares</h1>
+                <h1>Series Populares</h1>
                 <form>
-                    <input type = 'text' value={this.state.busqueda} onChange={(evento) => this.filtrarSeries(evento)}/>
+                    <input type = 'text' value={this.state.busqueda} onChange={(evento) => this.setState({busqueda: evento.target.value})}/>
                 </form>
-                <button  onClick={() => this.cargarMas()}>Cargar mas</button>
+                <MovieGrid movies={this.state.series.filter(serie => this.filtrarSeries(serie))}/>
+
+                <button  onClick={() => this.cargarMasSeries()}>Cargar mas</button>
             </div>
         )
     }

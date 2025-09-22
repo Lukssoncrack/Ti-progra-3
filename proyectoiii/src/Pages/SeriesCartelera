@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Loading from '../Components/Loading/Loading'
+import MovieGrid from '../Components/MovieGrid/MovieGrid';
 
 class SeriesCartelera extends Component {
     constructor(props) {
@@ -39,10 +40,10 @@ class SeriesCartelera extends Component {
     }
 
     
+    
+
     filtrarSeries(evento){
         this.setState({busqueda: evento.target.value})
-        let SerieFiltrada = this.state.series.filter((serie) => serie.includes(this.state.busqueda))
-        console.log(this.state.busqueda, SerieFiltrada)
     }
 
     render(){
@@ -53,8 +54,10 @@ class SeriesCartelera extends Component {
             <div>
                 <h1>Series en cartelera</h1>
                 <form>
-                    <input type = 'text' value={this.state.busqueda} onChange={(evento) => this.filtrarSeries(evento)}/>
+                    <input type = 'text' value={this.state.busqueda} onChange={(evento) => this.setState({busqueda: evento.target.value})}/>
                 </form>
+                <MovieGrid movies={this.state.series.filter(serie => serie.name.toLowerCase().includes(this.state.busqueda.toLowerCase()))}/>
+
                 <button  onClick={() => this.cargarMas()}>Cargar mas</button>
             </div>
         )
