@@ -1,0 +1,41 @@
+.footer {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 20px;
+    width: 100%; 
+    min-height: 120px; 
+    flex-direction: column;
+    background-position: center;
+    background-repeat: no-repeat;
+    box-sizing: border-box;
+}
+
+h2 {
+    color: rgb(123, 7, 7);
+    font-size: 30px;
+    padding: 2px;
+    margin: 0; 
+    margin-left: 20px;
+    font-family: 'Bebas Neue', sans-serif;
+    letter-spacing: 1px;
+}
+
+/* MEDIA QUERIES */
+
+/* Pantallas pequeñas (móviles) */
+@media (max-width: 420px) {
+    .footer {
+        min-height: 80px; 
+        padding: 10px;
+        flex-direction: column; 
+        justify-content: center;
+        align-items: center;
+    }
+
+    h2 {
+        font-size: 16px;
+        margin-left: 0;
+        text-align: center;
+    }
+}

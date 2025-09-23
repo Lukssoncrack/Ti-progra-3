@@ -13,6 +13,8 @@ import MovieDetail from './Components/MovieDetail/MovieDetail';
 import Busqueda from "./Components/Busqueda/Busqueda";
 import SeriesCartelera from './Pages/SeriesCartelera';
 
+
+
 function App() {
   return (
     <>

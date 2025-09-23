@@ -35,8 +35,10 @@ class Busqueda extends Component {
             <form className='' onSubmit={(e) => this.ejecutarBusqueda(e)}>
                 <input className='' placeholder='Buscador' value={this.state.buscador} onChange={(e) => this.controlarCambios(e)}></input>
             
-                <input type="radio"  name='type' value='movies' id=''  onChange={(e) =>  this.controlarCambiosRadio(e)}  />
-                <input type="radio" name='type' value='tv' id=''onChange={(e) =>  this.controlarCambiosRadio(e)} />
+               <label> <p>Pelis</p><input type="radio"  name='type' value='movies' id=''  onChange={(e) =>  this.controlarCambiosRadio(e)}  /></label>
+               
+                <label> <p>series</p> <input type="radio" name='type' value='tv' id=''onChange={(e) =>  this.controlarCambiosRadio(e)} /> </label>
+            
             <button className='' type='submit'>Buscar</button>
             </form>
         )

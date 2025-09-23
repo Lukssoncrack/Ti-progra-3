@@ -4,19 +4,29 @@ import { Link } from 'react-router-dom'
 
 function Header(){
     return(
-        <section class='header'>
-            <img src="https://st3.depositphotos.com/5904380/14482/v/450/depositphotos_144828517-stock-illustration-black-film-award.jpg" class='logo'/>
-            <h2>Nefli</h2>
-            <div class = 'menu'>
-                <Link to='/' class='item'>Home</Link>
-                <Link to='/favorites' class='item'>Favoritos</Link>
-                <Link to='/populares' class='item'>Peliculas populares</Link>
-                <Link to='/seriesPopulares' class='item'> Series populares</Link>   
-                <Link to='/seriesCartelera' class='item'> Series cartelera</Link>                                
-                <Link to='/cartelera' class='item'>Peliculas cartelera</Link>
-                
+        
+        <section className='header'>
+            <div className="titulo">
+           
+            <img  className="logo" src="https://st3.depositphotos.com/5904380/14482/v/450/depositphotos_144828517-stock-illustration-black-film-award.jpg" class='logo'/>
+            <div className='titulos'>
+            <h1>Nefli</h1>
+            <h3>Plus</h3>
             </div>
+
+            </div>
+            <nav>
+                <Link to='/' className='titulos2'>Home</Link>
+                <Link to='/favorites' className='titulos2'>Favoritos</Link>
+                <Link to='/populares' className='titulos2'>Peliculas populares</Link>
+                <Link to='/seriesPopulares' className='titulos2'> Series populares</Link>   
+                <Link to='/seriesCartelera' className='titulos2'> Series cartelera</Link>                                
+                <Link to='/cartelera' className='titulos2'>Peliculas cartelera</Link>
+                
+            </nav>
         </section>
+
+    
     )
 }
 

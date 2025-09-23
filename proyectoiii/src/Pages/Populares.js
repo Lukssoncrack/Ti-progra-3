@@ -49,7 +49,7 @@ class Populares extends Component {
         }
         return (
             <div>
-                <h1>Peliculas en cartelera</h1>
+                <h1>Peliculas en populares</h1>
                 <form>
                     <input type = 'text' value={this.state.busqueda} onChange={(evento) => this.setState({busqueda: evento.target.value})}/>
                 </form>

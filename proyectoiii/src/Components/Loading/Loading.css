@@ -1,0 +1,46 @@
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: black;
+}
+
+
+.mensaje {
+  margin-top: 20px;
+  font-size: 18px;
+  color: beige;
+}
+
+
+/* Pantallas medianas (tablets) */
+@media (max-width: 768px) {
+  .loader {
+    height: 80vh;
+  
+  }
+
+  .mensaje {
+    font-size: 16px;
+    margin-top: 15px;
+    
+  }
+}
+
+/* Pantallas pequeñas (móviles) */
+@media (max-width: 420px) {
+  .loader {
+    height: 70vh;
+   
+  }
+
+  .mensaje {
+    font-size: 14px;
+   
+    margin-top: 10px;
+   
+    text-align: center;
+   
+  }
+}
